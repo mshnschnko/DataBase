@@ -66,4 +66,10 @@ class Ui_GoodDriversForm(object):
         self.con.commit()
         allDrivers = self.mycursor.fetchall()
         for i in range(0, len(allDrivers)):
-            self.AddRow(allDrivers[i][0], allDrivers[i][1])
+            query = f"SELECT status FROM car WHERE driver_id = {allDrivers[i][0]} and status = 'Стоит на учете';"
+            self.mycursor.execute(query)
+            self.con.commit()
+            cars = self.mycursor.fetchall()
+            if (len(cars) != 0):
+                print(cars)
+                self.AddRow(allDrivers[i][0], allDrivers[i][1])
