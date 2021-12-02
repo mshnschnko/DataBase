@@ -6,6 +6,7 @@ import pymysql.cursors
 import bd_main
 import AddDriverWidget
 import MainMenu
+import LetterToGoodBoy
 #from MainMenu import Ui_MainWindow
 
 #import mysql.connector
@@ -21,5 +22,6 @@ def application(connection):
 
 if __name__ == "__main__":
     connection = bd_main.connect()
+    #LetterToGoodBoy.CheckForGoodBoys()
     application(connection)
     connection.close()

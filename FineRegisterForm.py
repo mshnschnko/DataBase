@@ -77,7 +77,7 @@ class Ui_FineRegisterForm(object):
         self.dateEdit.setFont(font)
         self.dateEdit.setCalendarPopup(True)
         self.dateEdit.setObjectName("dateEdit")
-        self.dateEdit.setMinimumDate(QDate.currentDate().addDays(-330))
+        self.dateEdit.setMinimumDate(QDate.currentDate().addDays(-370))
         self.dateEdit.setMaximumDate(QDate.currentDate())
         self.applyButton = QtWidgets.QPushButton(FineRegisterForm)
         self.applyButton.setGeometry(QtCore.QRect(405, 190, 75, 23))

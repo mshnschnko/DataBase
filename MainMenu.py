@@ -20,6 +20,8 @@ import GoodDriversForm
 import BadDriversForm
 import ChangeFineSum
 import ViolationStatisticks
+import LetterToGoodBoy
+import LetterToBadBoy
 #from PyQt6.QtWidgets import QApplication, QDialog, QMainWindow
 #from AddDriverDialog import Ui_Dialog
 
@@ -146,6 +148,9 @@ class Ui_MainWindow(object):
         #self.AddDriver()
         #self.OpenAddDriverWin()
 
+        self.OpenGoodBoy()
+        self.OpenBadBoy()
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "База данных ГИБДД"))
@@ -234,3 +239,9 @@ class Ui_MainWindow(object):
         ui = ViolationStatisticks.Ui_ViolationStatisticks()
         ui.setupUi(ViolationStats)
         ViolationStats.exec()
+
+    def OpenGoodBoy(self):
+        LetterToGoodBoy.CheckForGoodBoys()
+
+    def OpenBadBoy(self):
+        LetterToBadBoy.CheckForBadBoys()

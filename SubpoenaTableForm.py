@@ -65,7 +65,7 @@ class Ui_subpoena(object):
         _translate = QtCore.QCoreApplication.translate
         subpoena.setWindowTitle(_translate("subpoena", "Повестка"))
         self.subpoenaLabel.setText(_translate("subpoena", "Повестка"))
-        self.descriptionLabel.setText(_translate("subpoena", f"Гражданин {FCS} вызывается в районный суд по месту жительства по причине систематической неуплаты штрафов за нарушение правил дорожного движения:"))
+        self.descriptionLabel.setText(_translate("subpoena", f"Гражданин {FCS} вызывается в районный суд по месту жительства по причине систематического получения штрафов за нарушение правил дорожного движения:"))
         self.dateLabel.setText(_translate("subpoena", f"{str(datetime.date.today())}"))
         item = self.summaryTable.horizontalHeaderItem(0)
         item.setText(_translate("subpoena", "ID штрафа"))
