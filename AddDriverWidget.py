@@ -42,7 +42,7 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
         self.FCSedit.textChanged.connect(lambda: self.plainText_slot())
-        self.ApplyBut.clicked.connect(lambda: self.add_driver_query())
+        self.ApplyBut.clicked.connect(lambda: self.AddDriverQuery())
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -58,10 +58,10 @@ class Ui_Form(object):
         else:
             self.ApplyBut.setEnabled(False)
 
-    def add_driver_query(self):
-        matchFCS = re.findall(r"[а-я,А-Я]{3,}\s[а-я,А-Я]{3,}\s?[а-я,А-Я]*", self.text)
+    def AddDriverQuery(self):
+        matchFCS = re.findall(r"[а-я,А-Я]+\s[а-я,А-Я]+\s?[а-я,А-Я]*", self.text)
         if (len(matchFCS) == 1):
-            self.add_driver()
+            self.AddDriver()
             Success = QMessageBox()
             Success.setWindowTitle("Выполнено")
             Success.setText("Водитель успешно добавлен в реестр")
@@ -74,7 +74,7 @@ class Ui_Form(object):
             error.setIcon(QMessageBox.Icon.Warning)
             error.exec()
 
-    def add_driver(self):
+    def AddDriver(self):
         mycursor = self.con.cursor()
         query = f"INSERT INTO driver_list (FCS, fine_count) VALUES ('{self.text}', 0)"
         bd_main.execute(self.con, mycursor, query)
