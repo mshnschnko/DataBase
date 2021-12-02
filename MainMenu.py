@@ -19,6 +19,7 @@ import ProfitForm
 import GoodDriversForm
 import BadDriversForm
 import ChangeFineSum
+import ViolationStatisticks
 #from PyQt6.QtWidgets import QApplication, QDialog, QMainWindow
 #from AddDriverDialog import Ui_Dialog
 
@@ -117,6 +118,13 @@ class Ui_MainWindow(object):
         self.ChangeFineSumBtn.setFont(font)
         self.ChangeFineSumBtn.setObjectName("ChangeFineSumBtn")
 
+        self.ViolationStatisticksBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.ViolationStatisticksBtn.setGeometry(QtCore.QRect(260, 320, 210, 40))
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.ViolationStatisticksBtn.setFont(font)
+        self.ViolationStatisticksBtn.setObjectName("ViolationStatisticksBtn")
+
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -133,6 +141,7 @@ class Ui_MainWindow(object):
         self.GoodDriversBtn.clicked.connect(lambda: self.OpenGoodDriversForm())
         self.BadDriversBtn.clicked.connect(lambda: self.OpenBadDriversForm())
         self.ChangeFineSumBtn.clicked.connect(lambda: self.OpenChangeFineSumForm())
+        self.ViolationStatisticksBtn.clicked.connect(lambda: self.OpenViolationStatisticksForm())
 
         #self.AddDriver()
         #self.OpenAddDriverWin()
@@ -152,6 +161,7 @@ class Ui_MainWindow(object):
         self.GoodDriversBtn.setText(_translate("MainWindow", "Список хороших водителей"))
         self.BadDriversBtn.setText(_translate("MainWindow", "Список злостных водителей"))
         self.ChangeFineSumBtn.setText(_translate("MainWindow", "Изменить размер штрафа"))
+        self.ViolationStatisticksBtn.setText(_translate("MainWindow", "Статистика по нарушениям"))
 
     def OpenAddDriverWin(self):
         Dialog = QtWidgets.QDialog()
@@ -218,3 +228,9 @@ class Ui_MainWindow(object):
         ui = ChangeFineSum.Ui_ChangeFineSum()
         ui.setupUi(ChangeFine)
         ChangeFine.exec()
+
+    def OpenViolationStatisticksForm(self):
+        ViolationStats = QtWidgets.QDialog()
+        ui = ViolationStatisticks.Ui_ViolationStatisticks()
+        ui.setupUi(ViolationStats)
+        ViolationStats.exec()

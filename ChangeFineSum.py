@@ -7,6 +7,7 @@
 
 
 from PyQt6 import QtCore, QtGui, QtWidgets
+from PyQt6.QtWidgets import QMessageBox
 import bd_main
 
 
@@ -70,6 +71,7 @@ class Ui_ChangeFineSum(object):
         self.ClearViolationBtn.clicked.connect(lambda: self.ClearViolation())
         self.ViolationList.itemActivated.connect(lambda: self.SetFine(self.ViolationList.currentItem()))
         self.NewSumPlainText.textChanged.connect(lambda: self.Sum_slot())
+        self.ApplyBtn.clicked.connect(lambda: self.ChangeFineSum())
 
     def retranslateUi(self, ChangeFineSum):
         _translate = QtCore.QCoreApplication.translate
@@ -115,14 +117,28 @@ class Ui_ChangeFineSum(object):
                 self.AddItemToList(allViolations[i][0])
 
     def SetFine(self, item):
-        print("=", str(item.text()), "=")
         self.ViolationPlainText.setPlainText(str(item.text()))
-        print("fff")
-        #print("=", str(item.text()), "=")
         self.ViolationList.setVisible(False)
         query = f"SELECT sum FROM violation_list WHERE violation = '{self.violation}'"
-        print(query)
         self.mycursor.execute(query)
         self.con.commit()
         (sum,) = self.mycursor.fetchone()
         self.textBrowser.setText(str(sum))
+
+    def ChangeFineSum(self):
+        if (self.sum.isdigit()):
+            query = f"UPDATE violation_list SET sum = {str(self.sum)} WHERE violation = '{self.violation}'"
+            print(query)
+            self.mycursor.execute(query)
+            self.con.commit()
+            Success = QMessageBox()
+            Success.setWindowTitle("Выполнено")
+            Success.setText("Размер штрафа успешно изменен")
+            Success.setIcon(QMessageBox.Icon.Information)
+            Success.exec()
+        else:
+            error = QMessageBox()
+            error.setWindowTitle("Ошибка")
+            error.setText("Введены некорректные данные")
+            error.setIcon(QMessageBox.Icon.Warning)
+            error.exec()

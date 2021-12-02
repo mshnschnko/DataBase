@@ -64,7 +64,7 @@ class Ui_ProfitForm(object):
         self.BeginLabel.setFont(font)
         self.BeginLabel.setObjectName("BeginLabel")
         self.EndLabel = QtWidgets.QLabel(ProfitForm)
-        self.EndLabel.setGeometry(QtCore.QRect(210, 90, 15, 20))
+        self.EndLabel.setGeometry(QtCore.QRect(210, 90, 20, 20))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.EndLabel.setFont(font)
@@ -88,8 +88,8 @@ class Ui_ProfitForm(object):
 
         self.RadioBtns()
         #self.RealRadioBtn.clicked.connect(lambda: self.SetEnabledForCalculate())
-        self.BeginDate.dateChanged.connect(lambda: self.BeginDate_slot())
-        self.EndDate.dateChanged.connect(lambda: self.EndDate_slot())
+        self.BeginDate.dateChanged.connect(lambda: self.Date_slot())
+        self.EndDate.dateChanged.connect(lambda: self.Date_slot())
         self.CalculateBtn.clicked.connect(lambda: self.Profit())
 
     def retranslateUi(self, ProfitForm):
@@ -103,12 +103,14 @@ class Ui_ProfitForm(object):
         self.SumLabel.setText(_translate("ProfitForm", "Сумма:"))
         self.CalculateBtn.setText(_translate("ProfitForm", "Рассчитать"))
 
-    def BeginDate_slot(self):
+    def Date_slot(self):
         self.BeginDate_str = self.BeginDate.date().toString('yyyy-MM-dd')
+        self.EndDate_str = self.EndDate.date().toString('yyyy-MM-dd')
         #self.CalculateBtn.setEnabled(True)
 
-    def EndDate_slot(self):
-        self.EndDate_str = self.EndDate.date().toString('yyyy-MM-dd')
+    #def EndDate_slot(self):
+        #self.EndDate_str = self.EndDate.date().toString('yyyy-MM-dd')
+        #self.BeginDate_str = self.BeginDate.date().toString('yyyy-MM-dd')
         #self.CalculateBtn.setEnabled(True)
 
     def SetEnabledForCalculate(self):
