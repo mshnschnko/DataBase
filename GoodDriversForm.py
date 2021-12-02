@@ -71,5 +71,4 @@ class Ui_GoodDriversForm(object):
             self.con.commit()
             cars = self.mycursor.fetchall()
             if (len(cars) != 0):
-                print(cars)
                 self.AddRow(allDrivers[i][0], allDrivers[i][1])

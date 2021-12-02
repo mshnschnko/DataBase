@@ -156,10 +156,8 @@ class Ui_CarRegisterForm(object):
     def ApplyRegister(self):
         #matchCarID = re.findall(r"/(([АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ]{1,2})(\d{2,3})|(\d{4}[АВЕКМНОРСТУХ]{2})(\d{2})|(\d{3}C?D{1,2}\d{3})(\d{2})|([АВЕКМНОРСТУХ]{2}\d{3}[АВЕКМНОРСТУХ])(\d{2})|([АВЕКМНОРСТУХ]\d{4})(\d{2})|(\d{3}[АВЕКМНОРСТУХ])(\d{2})|(\d{4}[АВЕКМНОРСТУХ])(\d{2}))/i", self.carIDtext)
         matchCarID = re.findall(r"[АВЕКМНОРСТУХ][0-9]{3}[АВЕКМНОРСТУХ]{2}[1-9][0-9]+", self.carIDtext)
-        print(matchCarID)
         if (len(matchCarID) == 1):
             self.driver = str(self.FCStext)
-            print(self.driver)
             symbol = self.driver[2]
             i = 1
             while symbol != ')':
