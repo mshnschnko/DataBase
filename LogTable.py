@@ -52,10 +52,6 @@ class Ui_Form(object):
         self.listWidget.setSelectionRectVisible(False)
         self.listWidget.setObjectName("listWidget")
         self.listWidget.setVisible(False)
-        #self.comboBoxFCS = QtWidgets.QComboBox(Form)
-        #self.comboBoxFCS.setGeometry(QtCore.QRect(90, 50, 540, 25))
-        #self.comboBoxFCS.setEditable(True)
-        #self.comboBoxFCS.setObjectName("comboBoxFCS")
         self.FCSedit = QtWidgets.QPlainTextEdit(Form)
         self.FCSedit.setGeometry(QtCore.QRect(90, 50, 540, 25))
         self.FCSedit.setObjectName("FCSedit")
@@ -75,15 +71,10 @@ class Ui_Form(object):
 
         self.logTable.setEditTriggers(QtWidgets.QAbstractItemView.EditTrigger(False))
         self.logTable.verticalHeader().setVisible(False)
-        #self.FillComboBox()
-        #self.FillTable()
-        #self.comboBoxFCS.editTextChanged.connect(lambda: self.FillListWidget())
         self.FCSedit.textChanged.connect(lambda: self.FillListWidget())
         self.listWidget.itemActivated.connect(lambda: self.SelfFCSText(self.listWidget.currentItem()))
         self.listWidget.currentItemChanged.connect(lambda: self.FillTable())
         self.ClearName.clicked.connect(lambda: self.ClearEnterName())
-        #self.comboBoxFCS.currentTextChanged.connect(lambda: self.FillTable())
-
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -105,22 +96,9 @@ class Ui_Form(object):
     def ClearEnterName(self):
         self.FCSedit.clear()
 
-    #def addItemDriver(self, driverID, FCS):
-        #self.comboBoxFCS.addItem(f"({str(driverID)}) {FCS}")
-
     def SelfFCSText(self, item):
-        #print(str(item.text()))
         self.FCSedit.setPlainText(str(item.text()))
         self.listWidget.setVisible(False)
-
-    #def FillComboBox(self):
-        #query = "SELECT driver_ID, FCS FROM driver_list"
-        #self.mycursor.execute(query)
-        #self.con.commit()
-        #allIDandNames = self.mycursor.fetchall()
-        #countOfNames = len(allIDandNames)
-        #for i in range(0, countOfNames):
-            #self.addItemDriver(allIDandNames[i][0], allIDandNames[i][1])
 
     def AddRow(self, relation_ID, violation, sum, dateOfTheFine, hasTheFineBeenPaid):
         rowPosition = self.logTable.rowCount()

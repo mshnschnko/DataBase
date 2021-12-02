@@ -101,7 +101,6 @@ class Ui_FineRegisterForm(object):
         self.retranslateUi(FineRegisterForm)
         QtCore.QMetaObject.connectSlotsByName(FineRegisterForm)
 
-        #self.FillComboBox()
         self.FCSPlainText.textChanged.connect(lambda: self.FillFCSListWidget())
         self.violationPlainText.textChanged.connect(lambda: self.FillViolationListWidget())
         self.FCSlistWidget.itemActivated.connect(lambda: self.SetFCSPlainText(self.FCSlistWidget.currentItem()))
@@ -175,22 +174,6 @@ class Ui_FineRegisterForm(object):
     def date_slot(self):
         self.date = self.dateEdit.date().toString('yyyy-MM-dd')
         self.applyButton.setEnabled(True)
-
-    '''def FillComboBox(self):
-        query = "SELECT driver_ID, FCS FROM driver_list"
-        self.mycursor.execute(query)
-        self.con.commit()
-        allIDandNames = self.mycursor.fetchall()
-        countOfNames = len(allIDandNames)
-        for i in range(0, countOfNames):
-            self.addItemDriver(allIDandNames[i][0], allIDandNames[i][1])
-        query = "SELECT violation FROM violation_list"
-        self.mycursor.execute(query)
-        self.con.commit()
-        allViolations = self.mycursor.fetchall()
-        countOfViolations = len(allViolations)
-        for i in range(0, countOfViolations):
-            self.addItemViolation(allViolations[i][0])'''
 
     def FineRegisterFunc(self):
         FCS = str(self.FCStext)

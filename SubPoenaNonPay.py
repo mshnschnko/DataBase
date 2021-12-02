@@ -98,11 +98,6 @@ class Ui_SubPoenaNonPay(object):
             self.con.commit()
             (violation,) = self.mycursor.fetchone()
             self.AddRow(allInfo[i][0], violation, str(datetime.date.today() + datetime.timedelta(days=-30)), allInfo[i][2])
-        #query = f"SELECT violation FROM violation_list WHERE violation_ID = {violation_ID};"
-        #self.mycursor.execute(query)
-        #self.con.commit()
-        #(violation,) = self.mycursor.fetchone()
-        #self.AddRow()
 
     def AddRow(self, relation_ID, violation, dateOfTheFine, sum):
         rowPosition = self.summaryTable.rowCount()

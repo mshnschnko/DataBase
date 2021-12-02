@@ -59,7 +59,7 @@ class Ui_Form(object):
             self.ApplyBut.setEnabled(False)
 
     def add_driver_query(self):
-        if (len(self.text) > 8):
+        if (len(self.text) > 5):
             self.add_driver()
             Success = QMessageBox()
             Success.setWindowTitle("Выполнено")
