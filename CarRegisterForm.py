@@ -157,20 +157,21 @@ class Ui_CarRegisterForm(object):
         #matchCarID = re.findall(r"/(([АВЕКМНОРСТУХ]\d{3}[АВЕКМНОРСТУХ]{1,2})(\d{2,3})|(\d{4}[АВЕКМНОРСТУХ]{2})(\d{2})|(\d{3}C?D{1,2}\d{3})(\d{2})|([АВЕКМНОРСТУХ]{2}\d{3}[АВЕКМНОРСТУХ])(\d{2})|([АВЕКМНОРСТУХ]\d{4})(\d{2})|(\d{3}[АВЕКМНОРСТУХ])(\d{2})|(\d{4}[АВЕКМНОРСТУХ])(\d{2}))/i", self.carIDtext)
         matchCarID = re.findall(r"[АВЕКМНОРСТУХ][0-9]{3}[АВЕКМНОРСТУХ]{2}[1-9][0-9]+", self.carIDtext)
         if (len(matchCarID) == 1):
-            self.driver = str(self.FCStext)
-            symbol = self.driver[2]
-            i = 1
-            while symbol != ')':
-                i += 1
-                symbol = self.driver[i + 1]
-            self.driver_ID = self.driver[1:i + 1]
-            self.driver = self.driver[i + 3:]
+
             date_str = str(datetime.date.today())
             status_Search_query = f"SELECT status FROM car WHERE car_ID = '{self.carIDtext}';"
             self.mycursor.execute(status_Search_query)
             self.con.commit()
             status = self.mycursor.fetchone()
             if (self.driverPlainText.isEnabled() == True):
+                self.driver = str(self.FCStext)
+                symbol = self.driver[2]
+                i = 1
+                while symbol != ')':
+                    i += 1
+                    symbol = self.driver[i + 1]
+                self.driver_ID = self.driver[1:i + 1]
+                self.driver = self.driver[i + 3:]
                 if (status != None):
                     if (status[0] == 'Стоит на учете'):
                         Error = QMessageBox()
