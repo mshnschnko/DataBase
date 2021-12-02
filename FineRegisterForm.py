@@ -198,28 +198,13 @@ class Ui_FineRegisterForm(object):
             (fineCount,) = self.mycursor.fetchone()
             factor = 0
             if (fineCount != 0):
-                query = f"SELECT relation_ID, date_of_the_fine FROM driver_violation WHERE driver_ID = {driver_ID} AND has_the_fine_been_paid = 0;"
+                query = f"SELECT date_of_the_fine, relation_ID FROM driver_violation WHERE driver_ID = {driver_ID} AND has_the_fine_been_paid = 0;"
                 self.mycursor.execute(query)
                 self.con.commit()
                 fines = self.mycursor.fetchall()
-                finesLen = len(fines)
-                dateOfLatestFine = str(fines[0][1])
-                for i in range (0, finesLen):
-                    if (str(fines[i][1]) >= dateOfLatestFine):
-                        dateOfLatestFine = str(fines[i][1])
-                latestFineYear = int(dateOfLatestFine[0:4])
-                currentYear = int(self.date[0:4])
-                if (currentYear - latestFineYear == 1):
-                    latestFineMonth = int(dateOfLatestFine[5:7])
-                    currentMonth = int(self.date[5:7])
-                    if (currentMonth < latestFineMonth):
-                        factor = 0.1
-                    elif (currentMonth == latestFineMonth):
-                        latestFineDay = int(dateOfLatestFine[8:10])
-                        currentDay = int(self.date[8:10])
-                        if (currentDay < latestFineDay):
-                            factor = 0.1
-                elif (currentYear - latestFineYear == 0):
+                maximum = max(fines)
+                maxDate = maximum[0]
+                if (maxDate + datetime.timedelta(days=365) > datetime.date.today()):
                     factor = 0.1
             query_keys_not_check = "SET FOREIGN_KEY_CHECKS = 0;"
             self.mycursor.execute(query_keys_not_check)
