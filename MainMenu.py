@@ -22,6 +22,7 @@ import ChangeFineSum
 import ViolationStatisticks
 import LetterToGoodBoy
 import LetterToBadBoy
+import AddViolationForm
 #from PyQt6.QtWidgets import QApplication, QDialog, QMainWindow
 #from AddDriverDialog import Ui_Dialog
 
@@ -31,7 +32,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         self.con = bd_main.connect()
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(500, 390)
+        MainWindow.resize(500, 430)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.AddDriverBtn = QtWidgets.QPushButton(self.centralwidget)
@@ -52,18 +53,21 @@ class Ui_MainWindow(object):
         font.setKerning(True)
         self.label.setFont(font)
         self.label.setObjectName("label")
+
         self.ShowDriversBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.ShowDriversBtn.setGeometry(QtCore.QRect(30, 120, 210, 40))
+        self.ShowDriversBtn.setGeometry(QtCore.QRect(30, 170, 210, 40))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.ShowDriversBtn.setFont(font)
         self.ShowDriversBtn.setObjectName("ShowDriversBtn")
+
         self.FineRegisterBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.FineRegisterBtn.setGeometry(QtCore.QRect(260, 70, 210, 40))
+        self.FineRegisterBtn.setGeometry(QtCore.QRect(30, 120, 210, 40))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.FineRegisterBtn.setFont(font)
         self.FineRegisterBtn.setObjectName("FineRegisterBtn")
+
         self.CarRegisterBtn = QtWidgets.QPushButton(self.centralwidget)
         self.CarRegisterBtn.setGeometry(QtCore.QRect(260, 120, 210, 40))
         font = QtGui.QFont()
@@ -72,7 +76,7 @@ class Ui_MainWindow(object):
         self.CarRegisterBtn.setObjectName("CarRegisterBtn")
 
         self.DriverLogBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.DriverLogBtn.setGeometry(QtCore.QRect(30, 170, 210, 40))
+        self.DriverLogBtn.setGeometry(QtCore.QRect(145, 370, 210, 40))
         font = QtGui.QFont()
         font.setPointSize(10)
         self.DriverLogBtn.setFont(font)
@@ -127,6 +131,13 @@ class Ui_MainWindow(object):
         self.ViolationStatisticksBtn.setFont(font)
         self.ViolationStatisticksBtn.setObjectName("ViolationStatisticksBtn")
 
+        self.AddViolationBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.AddViolationBtn.setGeometry(QtCore.QRect(260, 70, 210, 40)) #145, 370
+        font = QtGui.QFont()
+        font.setPointSize(10)
+        self.AddViolationBtn.setFont(font)
+        self.AddViolationBtn.setObjectName("AddViolationBtn")
+
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -144,6 +155,7 @@ class Ui_MainWindow(object):
         self.BadDriversBtn.clicked.connect(lambda: self.OpenBadDriversForm())
         self.ChangeFineSumBtn.clicked.connect(lambda: self.OpenChangeFineSumForm())
         self.ViolationStatisticksBtn.clicked.connect(lambda: self.OpenViolationStatisticksForm())
+        self.AddViolationBtn.clicked.connect(lambda: self.OpenAddViolationForm())
 
         #self.AddDriver()
         #self.OpenAddDriverWin()
@@ -167,6 +179,7 @@ class Ui_MainWindow(object):
         self.BadDriversBtn.setText(_translate("MainWindow", "Список злостных водителей"))
         self.ChangeFineSumBtn.setText(_translate("MainWindow", "Изменить размер штрафа"))
         self.ViolationStatisticksBtn.setText(_translate("MainWindow", "Статистика по нарушениям"))
+        self.AddViolationBtn.setText(_translate("MainWindow", "Добавить нарушение"))
 
     def OpenAddDriverWin(self):
         Dialog = QtWidgets.QDialog()
@@ -245,3 +258,9 @@ class Ui_MainWindow(object):
 
     def OpenBadBoy(self):
         LetterToBadBoy.CheckForBadBoys()
+
+    def OpenAddViolationForm(self):
+        AddViolation = QtWidgets.QDialog()
+        ui = AddViolationForm.Ui_AddViolationForm()
+        ui.setupUi(AddViolation)
+        AddViolation.exec()

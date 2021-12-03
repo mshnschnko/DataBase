@@ -98,8 +98,6 @@ class Ui_ViolationStatisticks(object):
     def Date_slot(self):
         self.BeginDate_str = self.BeginDate.date().toString('yyyy-MM-dd')
         self.EndDate_str = self.EndDate.date().toString('yyyy-MM-dd')
-        print(self.BeginDate_str)
-        print(self.EndDate_str)
         self.ApplyBtn.setEnabled(True)
 
     def AddRow(self, violation_ID, violation, count):
@@ -124,8 +122,6 @@ class Ui_ViolationStatisticks(object):
             count = len(currentViolation)
             current = [count, allViolations[i][0], allViolations[i][1]]
             list_violation.append(current)
-        print(list_violation)
         list_violation.sort(reverse=True)
-        print(list_violation)
         for i in range(0, len(list_violation)):
             self.AddRow(list_violation[i][1], list_violation[i][2], list_violation[i][0])
