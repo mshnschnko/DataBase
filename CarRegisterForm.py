@@ -173,23 +173,11 @@ class Ui_CarRegisterForm(object):
                 self.driver_ID = self.driver[1:i + 1]
                 self.driver = self.driver[i + 3:]
                 if (status != None):
-                    if (status[0] == 'Стоит на учете'):
-                        Error = QMessageBox()
-                        Error.setWindowTitle("Ошибка!")
-                        Error.setText("Данный автомобиль уже зарегестрирован")
-                        Error.setIcon(QMessageBox.Icon.Warning)
-                        Error.exec()
-                    else:
-                        query = f"UPDATE car SET driver_ID = {self.driver_ID}, model = '{self.model}', registration_date = '{date_str}', status = 'Стоит на учете', `reason` = NULL WHERE car_ID = '{self.carIDtext}';"
-                        self.mycursor.execute(query)
-                        self.con.commit()
-                        Success = QMessageBox()
-                        Success.setWindowTitle("Выполнено")
-                        Success.setText("Информация об автомобиле обновлена")
-                        Success.setIcon(QMessageBox.Icon.Information)
-                        Success.exec()
-                        #query = f"INSERT INTO car (car_ID, driver_ID, model, registration_date, status) VALUES ('{self.carIDtext}', {self.driver_ID}, '{self.model}', '{date_str}', 'стоит на учете');"
-                        #print(self.carIDtext, "---", query)
+                    Error = QMessageBox()
+                    Error.setWindowTitle("Ошибка!")
+                    Error.setText("Данный автомобиль уже зарегестрирован в базе")
+                    Error.setIcon(QMessageBox.Icon.Warning)
+                    Error.exec()
                 else:
                     query = f"INSERT INTO car (car_ID, driver_ID, model, registration_date, status) VALUES ('{self.carIDtext}', {self.driver_ID}, '{self.model}', '{date_str}', 'Стоит на учете');"
 
@@ -221,7 +209,7 @@ class Ui_CarRegisterForm(object):
                 else:
                     Error = QMessageBox()
                     Error.setWindowTitle("Ошибка!")
-                    Error.setText("Автомобиль с таким госю номером не зарегестрирован")
+                    Error.setText("Автомобиль с таким гос. номером не зарегестрирован")
                     Error.setIcon(QMessageBox.Icon.Warning)
                     Error.exec()
             self.modelEdit.clear()
