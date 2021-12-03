@@ -109,6 +109,8 @@ class Ui_ViolationStatisticks(object):
         self.tableWidget.setItem(rowPosition, 2, QtWidgets.QTableWidgetItem(str(count)))
 
     def FillTable(self):
+        self.tableWidget.clearContents()
+        self.tableWidget.setRowCount(0)
         query = f"SELECT violation_ID, violation FROM violation_list;"
         self.mycursor.execute(query)
         self.con.commit()
